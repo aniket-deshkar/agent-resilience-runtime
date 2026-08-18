@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-resilience-runtime"
+version = "0.1.0"
+description = "Agent-aware retries, failure classification, fallbacks, loop detection, and execution budgets."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Aniket Deshkar" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.14",
+]
+
+[project.optional-dependencies]
+dev = ["build>=1.3,<2", "pytest>=8.4,<10", "ruff>=0.12,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_resilience_runtime"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers --basetemp=.pytest-tmp"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
